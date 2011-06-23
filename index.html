@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<!--
+	JavaScript im Jahr 2011
+	by Tim “Scytale” Weber <http://scytale.name/>
+	Presentation framework based on <http://code.google.com/p/html5slides/>
+-->
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>JavaScript im Jahr 2011</title>
+	<script src="slides.js"></script>
+	<style>
+		.scy h3 {
+			font-size: 48px;
+		}
+	</style>
+</head>
+
+<body class="scy" style="display: none;">
+
+<section class="slides layout-regular template-default">
+
+	<article>
+		<h1>JavaScript im Jahr 2011</h1>
+		<p>Tim „Scytale“ Weber &lt;http://scytale.name/&gt;</p>
+		<p>23. Juni 2011</p>
+		<p>Gulasch Programmiernacht 11, Karlsruhe</p>
+		<p><strong>Feedback?</strong> Twitter <strong>#js2011</strong> oder <strong>@Scytale</strong></p>
+	</article>
+
+	<article>
+		<h3>Ich</h3>
+		<ul>
+			<li>@Scytale</li>
+			<li>http://scytale.name/</li>
+			<li>Homebase: RaumZeitLabor Mannheim</li>
+			<li>angestellter Webentwickler (PHP, JS) bei @digiinfo<ul>
+				<li>wir suchen: Entwickler (PHP/JS), Gestalter (Web), UXer, Projektmanager</li>
+			</ul></li>
+			<li>GPN-Projekt: dezentrale Twitter-Alternative <strong>#12many</strong></li>
+		</ul>
+	</article>
+
+	<article>
+		<h3>JavaScript</h3>
+		<ul>
+			<li>geboren 1996 (Netscape, „LiveScript“)</li>
+			<li>Java ist der hippe Scheiß → JavaScript</li>
+			<li>Syntax ähnlich (C-Style), ansonsten kaum verwandt</li>
+		</ul>
+	</article>
+
+	<article>
+		<h3>DHTML!!1!</h3>
+		<ul>
+			<li>„dynamisches HTML“</li>
+			<li>Layer, animierte Title-Tags, Feenstaub am Mauscursor</li>
+			<li>ziemliches Gefrickel<ul>
+				<li>globale Variablen</li>
+				<li>niemand kapiert Objektorientierung</li>
+				<li><code>onclick</code>, <code>onload</code>, …</li>
+			</ul></li>
+			<li>→ ein einziges Copy&amp;Paste-Gewimmel ohne Verständnis</li>
+		</ul>
+	</article>
+
+	<article>
+		<h1>Und das ist heute noch so.</h1>
+	</article>
+
+	<article>
+		<h3>Datentypen</h3>
+		<ul>
+			<li>generell: <strong>wirklich ziemlich viel ist ein Objekt</strong></li>
+			<li>dynamisch typisiert</li>
+			<li><em>duck typing</em></li>
+			<li><code>typeof</code>-Operator gibt einen String mit dem Typ zurück</li>
+		</ul>
+	</article>
+
+	<article>
+		<h3>Datentypen: number</h3>
+		<ul>
+			<li>keine Unterscheidung zwischen Integer und Float</li>
+		</ul>
+		<pre>
+typeof 3             // "number"
+(-3.141).toString()  // "-3.141"
+5e3                  // 5000</pre>
+	</article>
+
+	<article>
+		<h3>Datentypen: string</h3>
+		<ul>
+			<li>Unicode-Strings!!</li>
+			<li>immutable</li>
+			<li>Doublequotes oder Singlequotes ohne Unterschied</li>
+			<li>keine Variablen-Expansion</li>
+			<li>paar Backslash-Escapes (<code>\n</code>, <code>\u0041</code> etc.)</li>
+		</ul>
+		<pre>
+typeof "foo"      // "string"
+typeof typeof 3   // "string"
+"A" === '\u0041'  // true
+'mööp♥'.length    // 5</pre>
+	</article>
+
+	<article>
+		<h3>Datentypen: null</h3>
+		<ul>
+			<li>Wert für „unbekannt“</li>
+			<li>anders als in z.B. PHP ist „undefiniert“ nochmal was anderes</li>
+			<li>Objekt ohne Properties</li>
+		</ul>
+		<pre>
+typeof null      // "object"
+null.toString()  // (Exception)</pre>
+	</article>
+
+	<article>
+		<h3>Datentypen: boolean</h3>
+		<ul>
+			<li><code>true</code> oder <code>false</code></li>
+		</ul>
+		<pre>
+typeof true      // "boolean"
+true.toString()  // "true"</pre>
+	</article>
+
+	<article>
+		<h3>Datentypen: undefined</h3>
+		<ul>
+			<li>Wert für „nicht definiert“</li>
+			<li>Prüfen mit <code>typeof</code>, obwohl Konstante <code>undefined</code> existiert</li>
+		</ul>
+		<pre>
+undefined                 // undefined
+typeof undefined          // "undefined"
+typeof x                  // "undefined"
+typeof x === 'undefined'  // true
+x == undefined            // (Exception: „x is not defined“)</pre>
+	</article>
+
+	<article>
+		<h3>Datentypen: object</h3>
+		<ul>
+			<li>Sammlung aus Key-Value-Paaren</li>
+			<li>Keys dürfen beliebige Strings sein</li>
+			<li>Zahlen als Strings sind okay, werden in Strings gewandelt</li>
+			<li>keine überzähligen Kommas! (IE …)</li>
+		</ul>
+		<pre>
+var x = {
+    foo:    "bar",             // entspricht "foo": "bar"
+    "true": "Spandau Ballet",  // bei reservierten oder nicht-Wörtern
+    3.141:  "Pi"               // Zahl als Key
+};
+typeof x                       // "object"
+x["foo"] === x.foo             // true
+x.true                         // "Spandau Ballet"
+x["3.141"]                     // "Pi"</pre>
+	</article>
+
+	<article>
+		<h3>Datentypen: array</h3>
+		<ul>
+			<li>ein „eingeschränktes“ Objekt</li>
+			<li>hat eine Länge</li>
+			<li>kann Löcher haben</li>
+		</ul>
+		<pre>
+var x = [2, 4, 6];
+x[1]                // 4
+x[5]                // undefined
+x.length            // 3
+x[5] = 9000
+x.length            // 6 (!!)
+x[4]                // undefined</pre>
+	</article>
+
+	<article>
+		<h3>Exceptions</h3>
+		<ul>
+			<li>eine Exception ist alles, was geworfen wird</li>
+		</ul>
+		<pre>
+throw {
+	type:    "BullshitException",
+	message: "I’m in space!"
+};
+
+throw "PENIS!";
+
+throw 5;
+
+throw true;</pre>
+	</article>
+
+	<article>
+		<h3>Datentypen: Function</h3>
+		<ul>
+			<li>wie ein Objekt, aber zusätzlich aufrufbar</li>
+		</ul>
+		<pre>
+var sum = function (a, b) {  // ähnlich: function sum(a, b) {
+    return a + b;
+};
+sum(3, 8)                    // 11
+sum("PEN", 15)               // "PEN15"
+sum.foo = "bar";</pre>
+	</article>
+
+	<article>
+		<h3>Scoping</h3>
+		<ul>
+			<li>Scope basiert auf Funktionen (nicht geschweifte Klammern oder Objekte)</li>
+			<li>mit <code>var</code> definierte Variablen: lokal</li>
+			<li>ohne <code>var</code> definierte: im <code>window</code>-Objekt („global“)</li>
+		</ul>
+		<pre>
+x = 3;      // global
+var y = 4;  // auch global weil im äußersten Scope definiert
+var foo = function (a) {
+    var z = 9;
+    y += a;
+    return a * 2;
+};
+foo(15)  // 30
+x        // 3
+y        // 19
+z        // (Exception weil undefiniert)</pre>
+	</article>
+
+	<article>
+		<h3><code>Objektorientierung</code></h3>
+		<ul>
+			<li>JavaScript kennt keine Klassen, nur Objekte</li>
+			<li>Vererbung ist prototypbasiert</li>
+			<li>mächtig, aber ungewohnt</li>
+		</ul>
+		<pre>
+var animal = {
+    lives: 1,
+    "die": function () {
+        this.lives--;
+    }
+};
+var cat = {
+    lives: 9
+};
+cat.prototype = animal;</pre>
+	</article>
+
+	<article>
+		<h3><code>this</code></h3>
+		<ul>
+			<li>innerhalb Funktionen definiert</li>
+			<li>verweist auf das Objekt, „über das“ die Funktion aufgerufen (nicht: definiert!) wurde</li>
+		</ul>
+		<pre>
+var o = {
+    val: 3,
+    foo: function () {
+        return this.val * 2;
+    }
+};
+o.foo()              // 6
+var o2 = {
+    foo: o.foo
+};
+o2.foo()             // NaN (weil this auf o2 zeigt)
+var blub = o.foo();
+blub()               // NaN</pre>
+	</article>
+
+	<article>
+		<h1>Dinge von heute</h1>
+	</article>
+
+	<article>
+		<h3>Closures</h3>
+		<ul>
+			<li>Funktionen können innerhalb von Funktionen definiert werden</li>
+			<li>sehen dadurch auch die Variablen der äußeren Funktion</li>
+			<li>AWESOMENESS!</li>
+			<li>lässt sich wunderbar für „private“ Variablen verwenden</li>
+		</ul>
+	</article>
+
+	<article>
+		<h3>Objekte 2011</h3>
+		<pre>
+var animal = function (startLives) {
+    var lives = startLives;
+    return {
+        "die": function () {
+            lives--;
+        }
+    }
+};
+var bello = animal(1);
+bello.lives    // undefined
+bello.die();</pre>
+	</article>
+
+	<article>
+		<h3>Frameworks benutzen</h3>
+		<ul>
+			<li>sich mit Browserunterschieden (Sprachfeatures, CSS-Selektoren, DOM-Implementierung, …) rumschlagen ist Zeitverschwendung</li>
+			<li>meine Empfehlung: jQuery</li>
+			<li>wem jQuery zu bloatig ist: <code>microjs.com</code></li>
+		</ul>
+		<iframe src='http://microjs.com/'></iframe>
+	</article>
+
+	<article>
+		<h3>Code und Content trennen</h3>
+<pre>&lt;body onload="alert('foo!');"&gt;</pre>
+<pre>&lt;form onsubmit="alert('bumm');"&gt;</pre>
+		<ul>
+			<li><strong>BÖSE!</strong></li>
+			<li>globale Variablen bzw. Funktionsnamen</li>
+			<li>schwieriger, Kompatibilität ohne JS sicherzustellen</li>
+		</ul>
+	</article>
+
+	<article>
+		<h3>Code und Content trennen</h3>
+		<ul>
+			<li>besser: im Nachhinein Events binden</li>
+		</ul>
+		<pre>
+jQuery(function () {
+	alert('foo!');
+});</pre>
+		<pre>
+$("form").submit(function () {
+	foo();
+});</pre>
+	</article>
+
+	<article>
+		<h3>Dinge ohne JavaScript funktionieren lassen</h3>
+		<p>Schlecht:</p>
+		<pre>&lt;a href="javascript:loadTab('info');"&gt;</pre>
+		<p>Gut:</p>
+		<pre>
+&lt;a id="infolink" href="/info"&gt;
+&lt;script&gt;
+$("#infolink").click(function () {
+    loadTab('info');
+    return false;
+});
+&lt;/script&gt;</pre>
+	</article>
+
+	<article>
+		<h3>Markup auf „ohne JavaScript“ optimieren</h3>
+		<ul>
+			<li>Stichwort <em>progressive enhancement</em></li>
+			<li>in krassen Fällen DOM per JavaScript umbauen</li>
+			<li>Feature-Detection, z.B. mit Modernizr</li>
+		</ul>
+		<pre>&lt;html class="no-js"&gt;</pre>
+		<p>wird zu</p>
+		<pre>
+&lt;html class="
+    js no-touch no-history multiplebgs boxshadow opacity
+    no-cssanimations csscolumns cssgradients csstransforms
+    no-csstransitions fontface localstorage sessionstorage
+    svg no-inlinesvg tk-loaded wf-active js flexbox canvas
+…"&gt;</pre>
+	</article>
+
+	<article>
+		<h3>Modulpattern statt globale Variablen</h3>
+		<ul>
+			<li>genau <strong>eine</strong> globale Variable pro Vendor</li>
+		</ul>
+		<pre>
+if (typeof di === 'undefined') {
+    di = {};
+}
+di.JS2011Talk = {
+    run: function () { … }
+};</pre>
+	</article>
+
+	<article>
+		<h3>Vorsicht vor <code>==</code></h3>
+		<pre>
+ 0 == ''    // true
+ 0 == '0'   // true
+'' == '0'   // false</pre>
+		<pre>
+0 == true   // false
+!'0'        // false
+!!'0'       // true</pre>
+	</article>
+
+	<article>
+		<h3>Kleinkram</h3>
+		<ul>
+			<li><code>new</code> und <code>this</code> möglichst vermeiden</li>
+			<li><code>==</code> vermeiden, stattdessen <code>===</code>
+			<li>keine blocklosen <code>if</code>s</li>
+			<li>keine uninitialisierten Variablen</li>
+			<li>vielleicht <code>"use strict"</code></li>
+			<li>Semikolons setzen</li>
+		</ul>
+		<pre class="lang-js">
+i
+++
+j</pre>
+	</article>
+
+	<article>
+		<h3>Fragen</h3>
+		<ul>
+			<li>@Scytale / #js2011</li>
+			<li>http://scytale.name/</li>
+			<li>Tisch gegenüber OSM-Karte an der Kasse</li>
+		</ul>
+	</article>
+
+</section>
+
+</body>
+
+</html>
