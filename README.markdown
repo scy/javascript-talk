@@ -12,8 +12,8 @@ Die [Folien zum Vortrag][slides] werden kontinuierlich aktualisiert. Wer sich f√
 
 Eine [Videoaufzeichnung vom Vortrag auf der GPN11][gpn11rec] existiert auch, ist aber aufgrund von Hardwareproblemen beim Veranstalter nur l√ºckenhaft.
 
-[slides]:   http://scy.github.com/javascript-talk/
-[slidesgh]: https://github.com/scy/javascript-talk
+[slides]:     http://scy.github.com/javascript-talk/
+[slidesrepo]: https://github.com/scy/javascript-talk
 
 ## Kontakt
 
