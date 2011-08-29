@@ -10,7 +10,7 @@ Danach werden typische Fehler aufgezeigt und wie man’s besser macht. Außerdem
 
 Die [Folien zum Vortrag][slides] werden kontinuierlich aktualisiert. Wer sich für den Stand zu einer bestimmten Veranstaltung interessiert, kann die Tags des zugehörigen [Repositorys auf GitHub][slidesrepo] benutzen.
 
-Eine [Videoaufzeichnung vom Vortrag auf der GPN11][gpn11rec] existiert auch, ist aber aufgrund von Hardwareproblemen beim Veranstalter nur lückenhaft.
+Eine Videoaufzeichnung vom Vortrag auf der GPN11 existiert auch, ist aber aufgrund von Hardwareproblemen beim Veranstalter nur lückenhaft. Ihr findet sie unter ftp://media.ccc.de/events/gpn11/gpn11-modernes-javascript.mkv (sorry, GitHub verlinkt keine FTP-URLs …).
 
 [slides]:     http://scy.github.com/javascript-talk/
 [slidesrepo]: https://github.com/scy/javascript-talk
@@ -41,8 +41,7 @@ Der Talk wurde in quasi der selben Fassung wie zur GPN11 am 28. August 2011 au
 
 ### Gulasch Programmiernacht 11
 
-Zum ersten Mal gehalten wurde der Talk am 23. Juni 2011 auf der [GPN11][gpn11] in der HfG Karlsruhe, organisiert von [Entropia][entropia]. Es gibt eine aufgrund von Hardwareproblemen nur lückenhafte [Aufzeichnung][gpn11rec].
+Zum ersten Mal gehalten wurde der Talk am 23. Juni 2011 auf der [GPN11][gpn11] in der HfG Karlsruhe, organisiert von [Entropia][entropia]. Es gibt eine aufgrund von Hardwareproblemen nur lückenhafte Aufzeichnung unter ftp://media.ccc.de/events/gpn11/gpn11-modernes-javascript.mkv (sorry, GitHub verlinkt keine FTP-URLs …).
 
 [gpn11]:    https://entropia.de/GPN11
 [entropia]: https://entropia.de/
-[gpn11rec]: ftp://media.ccc.de/events/gpn11/gpn11-modernes-javascript.mkv
