@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>JavaScript im Jahr 2011 – Kurzversion</title>
+	<script src="slides.js"></script>
+	<style>
+		.scy h3 {
+			font-size: 48px;
+		}
+		.scy pre {
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+
+<body class="scy" style="display: none;">
+<section class="slides layout-regular template-default">
+
+<article>
+	<h1>JavaScript im Jahr 2011</h1>
+	<p>Tim „Scytale“ Weber &lt;<a href="http://scytale.name/">http://scytale.name/</a>&gt;</p>
+	<p>12. September 2011</p>
+	<p>9. Webmontag.talk des Webmontag MRN, Musikpark Mannheim</p>
+	<p>Fragen/Feedback: <strong><a href="https://twitter.com/Scytale">@Scytale</a></strong></p>
+</article>
+
+<article>
+	<h3>Ich</h3>
+	<ul>
+		<li>Tim <strong><a href="https://twitter.com/Scytale">@Scytale</a></strong> Weber</li>
+		<li>Gründungsmitglied des <a href="http://raumzeitlabor.de/">RaumZeitLabor</a></li>
+		<li>Webentwickler bei <a href="http://www.digi-info.de/">[di]</a></li>
+		<li>CCC, Piraten, Spackeria</li>
+	</ul>
+</article>
+
+<article>
+	<h3>Der Vortrag</h3>
+	<ul>
+		<li>Langversion unter <a href="http://scy.github.com/javascript-talk/">http://scy.github.com/javascript-talk/</a></li>
+		<li>hier: weniger Grundlagen, mehr Praxis</li>
+		<li>nachdrücklicher Buchtipp: <em>JavaScript: The Good Parts</em> (<a href="http://www.oreilly.de/catalog/9780596517748/">O’Reilly</a>, <a href="http://www.amazon.de/JavaScript-Parts-Working-Shallow-Grain/dp/0596517742?tag=raumzeitlabor-21">Amazon</a>)</li>
+	</ul>
+</article>
+
+<article>
+	<h3>Das Problem</h3>
+	<ul>
+		<li>JavaScript von den Machern nicht gut durchdacht</li>
+		<li>kaum ein JS-Coder hat ein Buch gelesen</li>
+		<li>erst recht nicht den Standard</li>
+		<li>alles nur copy&amp;paste-Gefrickel</li>
+		<li>und dann wundert ihr euch …</li>
+	</ul>
+</article>
+
+<article>
+	<h3>Wichtige Tipps</h3>
+	<ul>
+		<li>benutz ein Framework (möglichst <a href="http://jquery.com/">jQuery</a>)</li>
+		<li>wenn keine 31 kB Platz,<br/>dann benutz ein Microframework (<a href="http://microjs.com/">microjs.com</a>)</li>
+		<li>Vorsicht vor Tutorials im Netz<br/>(meist veraltet oder Halbwissen)</li>
+		<li>benutz <a href="http://getfirebug.com/wiki/index.php/Console_API"><code>console.log()</code> etc.</a> statt <code>alert()</code></li>
+	</ul>
+</article>
+
+<article>
+	<h3>Variablensichtbarkeit</h3>
+	<ul>
+		<li>immer <code>var</code> benutzen (sonst global)
+			<pre>
+function () {
+    var x = 23;
+    y = 17;   // äquivalent zu window.y = 17;
+}
+var z = 5;    // außerhalb von Funktion, daher global</pre>
+		</li>
+		<li>globale explizit über <code>window.xy</code> binden</li>
+		<li><strong>Variablen nur innerhalb der<br/>definierenden Funktion sichtbar</strong></li>
+		<li>(Funktionen sind verschachtelbar)</li>
+		<li>!</li>
+	</ul>
+</article>
+
+<article>
+	<h3>Globale Variablen stinken</h3>
+	<ul>
+		<li>Schlecht:
+			<pre>
+&lt;script&gt;
+for (var i = 0; i &lt; 3; i++) {
+    $('body').append('&lt;p&gt;Absatz ' + i + '&lt;/p&gt;');
+}
+// i ist noch da
+&lt;/script&gt;</pre>
+		</li>
+		<li>Besser:
+			<pre>
+&lt;script&gt;
+(function () {
+    for (var i = 0; i &lt; 3; i++) {
+        $('body').append('&lt;p&gt;Absatz ' + i + '&lt;/p&gt;');
+    }
+})();
+// i ist weg
+&lt;/script&gt;</pre>
+		</li>
+	</ul>
+</article>
+
+<article>
+	<h3>Globale Funktionen stinken</h3>
+	<ul>
+		<li>Schlecht:
+			<pre>
+&lt;script&gt;
+function showinfo() {
+    …
+}
+&lt;/script&gt;
+&lt;a href="#" onclick="showinfo();"&gt;Info&lt;/a&gt;</pre>
+		</li>
+		<li>Besser:
+			<pre>
+&lt;a href="#" id="infolink"&gt;Info&lt;/a&gt;
+&lt;script&gt;
+$('#infolink').click(function () {
+    …
+});
+&lt;/script&gt;</pre>
+		</li>
+	</ul>
+</article>
+
+<article>
+	<h3>Vermeidbares JavaScript-only</h3>
+	<ul>
+		<li>Schlecht:
+			<pre>
+&lt;a href="#" id="infolink"&gt;Info&lt;/a&gt;
+&lt;script&gt;
+$('#infolink').click(function () {
+    // öffne info.html in ner Lightbox
+});
+&lt;/script&gt;</pre>
+		</li>
+		<li>Besser:
+			<pre>
+&lt;a href="info.html" class="lightboxlink"&gt;Info&lt;/a&gt;
+&lt;script&gt;
+$('.lightboxlink').click(function () {
+    // öffne $(this).attr('href') in ner Lightbox
+    return false;
+});
+&lt;/script&gt;</pre>
+		</li>
+	</ul>
+</article>
+
+<article>
+	<h3>Modulpattern</h3>
+	<ul>
+		<li>Wenn sich ein globaler Name nicht vermeiden lässt: Genau einen Einstiegspunkt benutzen statt Chaos
+			<pre>
+window.di = window.di || {};
+di.JavaScriptTalk = {
+    speaker: 'Tim Weber',
+    run:     function () {
+        …
+    }
+};</pre>
+			<pre>
+window.di = window.di || {};
+di.NyanCatAnimation = {
+    enjoyedBy: [ di.JavaScriptTalk.speaker ]
+};</pre>
+		</li>
+	</ul>
+</article>
+
+<article>
+	<h3>Closures</h3>
+	<ul>
+		<li>Objekt mit definierter Schnittstelle<br/>und unerreichbarem Inneren
+			<pre>
+var cat = function (startlives) {
+    var lives = startlives;
+    var kill = function () {
+        lives--;
+        if (lives &lt; 1) {
+            alert('Örks');
+        }
+    };
+    return {
+        kill: kill
+    };
+};
+var maunzi = cat(7);
+
+typeof maunzi.lives   // undefined</pre>
+		</li>
+	</ul>
+</article>
+
+<article>
+	<h3>Schluuuuuss</h3>
+	<ul>
+		<li><strong>Fragen?</strong> Jetzt oder nachher oder @Scytale</li>
+		<li>Slides: <a href="http://scy.github.com/javascript-talk/short.html">http://scy.github.com/javascript-talk/short.html</a></li>
+	</ul>
+	<p style="text-align: center;"><img src="qr-short.png" alt="QR-Code" /></p>
+</article>
+
+</section>
+</body>
