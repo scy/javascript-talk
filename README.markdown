@@ -10,10 +10,11 @@ Danach werden typische Fehler aufgezeigt und wie man’s besser macht. Außerdem
 
 Die [Folien zum Vortrag][slides] werden kontinuierlich aktualisiert. Wer sich für den Stand zu einer bestimmten Veranstaltung interessiert, kann die Tags des zugehörigen [Repositorys auf GitHub][slidesrepo] benutzen.
 
-Eine Videoaufzeichnung vom Vortrag auf der GPN11 existiert auch, ist aber aufgrund von Hardwareproblemen beim Veranstalter nur lückenhaft. Ihr findet sie unter ftp://media.ccc.de/events/gpn11/gpn11-modernes-javascript.mkv (sorry, GitHub verlinkt keine FTP-URLs …).
+Eine [Videoaufzeichnung vom Vortrag auf der GPN11][gpn11vid] existiert auch, ist aber aufgrund von Hardwareproblemen beim Veranstalter nur lückenhaft.
 
 [slides]:     http://scy.github.com/javascript-talk/
 [slidesrepo]: https://github.com/scy/javascript-talk
+[gpn11vid]:   https://www.youtube.com/watch?v=WDA4xh2PBhQ
 
 ## Kontakt
 
@@ -25,12 +26,10 @@ Die diversen Möglichkeiten, mich mit Fragen und Feedback zu erreichen, findet i
 
 ### Webmontag Rhein-Neckar
 
-Der Talk wird in einer 15-Minuten-Kurzfassung beim [9. Webmontag.talk][wmtalk9] des [Webmontag Rhein-Neckar][wmmrn] am 12. September 2011 gehalten.
+Der Talk wurde in einer 15-Minuten-Kurzfassung beim [9. Webmontag.talk][wmtalk9] des [Webmontag Rhein-Neckar][wmmrn] am 12. September 2011 gehalten. Aufzeichnungen existieren keine.
 
 [wmtalk9]: https://www.xing.com/events/9-webmontag-talk-768145
 [wmmrn]:   http://wmmrn.de/
-
------
 
 ### Large Hackerspace Convention 2
 
@@ -41,7 +40,7 @@ Der Talk wurde in quasi der selben Fassung wie zur GPN11 am 28. August 2011 au
 
 ### Gulasch Programmiernacht 11
 
-Zum ersten Mal gehalten wurde der Talk am 23. Juni 2011 auf der [GPN11][gpn11] in der HfG Karlsruhe, organisiert von [Entropia][entropia]. Es gibt eine aufgrund von Hardwareproblemen nur lückenhafte Aufzeichnung unter ftp://media.ccc.de/events/gpn11/gpn11-modernes-javascript.mkv (sorry, GitHub verlinkt keine FTP-URLs …).
+Zum ersten Mal gehalten wurde der Talk am 23. Juni 2011 auf der [GPN11][gpn11] in der HfG Karlsruhe, organisiert von [Entropia][entropia]. Es gibt eine aufgrund von Hardwareproblemen nur lückenhafte [Aufzeichnung][gpn11vid].
 
 [gpn11]:    https://entropia.de/GPN11
 [entropia]: https://entropia.de/
